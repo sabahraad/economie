@@ -23,3 +23,9 @@ Route::post('/form1', [App\Http\Controllers\indexController::class, 'form1']);
 Route::post('/form2', [App\Http\Controllers\indexController::class, 'form2']);
 
 Route::post('/form3', [App\Http\Controllers\indexController::class, 'form3']);
+
+Route::post('/form4', [App\Http\Controllers\indexController::class, 'form4']);
+
+Route::post('/entreprise-list', [App\Http\Controllers\adminController::class, 'entrepriseList']);
+
+  

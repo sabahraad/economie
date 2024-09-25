@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html> 
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
@@ -26,27 +25,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <link href="{{asset('css/animate.css')}}" rel="stylesheet">
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css/style.css')}}" rel="stylesheet">
-    <link rel="stylesheet" id="color-scheme" href="{{asset('css/green.css')}}">
+    <link href="{{asset('index/css/animate.css')}}" rel="stylesheet">
+    <link href="{{asset('index/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('index/css/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" id="color-scheme" href="{{asset('index/css/green.css')}}">
     <link href="{{asset('css/jquery.selectbox.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Favicon and Apple Icons -->
 
-    <link rel="icon" type="image/png" href="{{asset('img/favicon.ico')}}">
-    <link rel="apple-touch-icon" sizes="57x57" href="{{asset('img/favicon.ico')}}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('img/favicon.ico')}}">
+    <link rel="icon" type="image/png" href="{{asset('index/img/favicon.ico')}}">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{asset('index/img/favicon.ico')}}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('index/img/favicon.ico')}}">
 
 
     <!-- Modernizr -->
 
-    <script src="{{asset('js/modernizr.js')}}"></script>
+    <script src="{{asset('index/js/modernizr.js')}}"></script>
 
     <!--- jQuery -->
 
-    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('index/js/jquery.min.js')}}"></script>
 
 
     <!-- Queryloader -->
@@ -292,7 +291,7 @@
 
                     <div class="navbar-header">
 
-                        <img src="{{asset('img/logo.png')}}"
+                        <img src="{{asset('index/img/logo.png')}}"
                              style="width: auto!important; height: auto!important; margin: 1%;">
 
                     </div><!-- End .navbar-header -->
@@ -306,7 +305,7 @@
 
     </header><!-- End #header -->
 
-        <div class="page-header parallax dark larger2x larger-desc" data-bgattach="{{asset('img/shop-header.html')}}"
+        <div class="page-header parallax dark larger2x larger-desc" data-bgattach="{{asset('index/img/shop-header.html')}}"
              data-0="background-position:50% 0px;" data-500="background-position:50% -100%">
 
             <div class="container" data-0="opacity:1;" data-top="opacity:0;">
@@ -336,9 +335,9 @@
 
         <!--            <img src="/static/img/header.png" alt="header" style="display: block;margin-left: auto;margin-right: auto; margin-bottom:40px;">-->
         <picture>
-            <source srcset="{{asset('img/header.png')}}" media="(min-width: 1100px)">
-            <source srcset="{{asset('img/small_header.png')}}" media="(max-width: 1000px)">
-            <img srcset="{{asset('img/header.png')}}" alt="header"
+            <source srcset="{{asset('index/img/header.png')}}" media="(min-width: 1100px)">
+            <source srcset="{{asset('index/img/small_header.png')}}" media="(max-width: 1000px)">
+            <img srcset="{{asset('index/img/header.png')}}" alt="header"
                  style="display: block;margin-left: auto;margin-right: auto; margin-bottom:40px;">
         </picture>
         
@@ -1370,11 +1369,14 @@
 
                                                 </div><!-- End .input-group -->
 
-                                                <img src="static/img/selfie.jpg" alt="Selfie"
+                                                <img src="{{asset('index/img/selfie.jpg')}}" alt="Selfie"
                                                      style="width:200px;">
                                                 <input type="file" name="selfie" id="selfie"
                                                        class="btn btn-custom progression" style="height:10%;">
 
+                                                <input type="hidden" id="uid" name="uid"
+                                                       class="progression form-control"
+                                                       value="{{$_SESSION['random_number']}}" >
 
                                             </div><!-- END .col-md-4 -->
 
@@ -1700,7 +1702,6 @@ Accessibilité et jeux olympiques <br>
 
 
 
-                   <!-- <img src="{{asset('img/entreprises_new.png')}}" alt="entreprise" style="display: block;margin-left: auto;margin-right: auto;"> -->
 
         <!--            <img src="/static/img/aide_ukraine.png" alt="ukraine" style="display: block;margin-left: auto;margin-right: auto;">-->
 
@@ -1722,7 +1723,7 @@ Accessibilité et jeux olympiques <br>
 
                                     <div class="col-md-5">
 
-                                        <img src="{{asset('img/ukraine.png')}}" alt="Service"
+                                        <img src="{{asset('index/img/ukraine.png')}}" alt="Service"
                                              class="img-responsive center-block wow zoomIn">
 
                                         <div class="mb30 visible-sm visible-xs"></div><!-- space -->
@@ -1750,7 +1751,7 @@ Accessibilité et jeux olympiques <br>
 
                                     <div class="col-md-5">
 
-                                        <img src="{{asset('img/fr.png')}}" alt="Service"
+                                        <img src="{{asset('index/img/fr.png')}}" alt="Service"
                                              class="img-responsive center-block wow zoomIn">
 
                                         <div class="mb30 visible-sm visible-xs"></div><!-- space -->
@@ -1778,7 +1779,7 @@ Accessibilité et jeux olympiques <br>
 
                                     <div class="col-md-5">
 
-                                        <img src="{{asset('img/PFUE-LOGOS.jpg')}}" alt="Service"
+                                        <img src="{{asset('index/img/PFUE-LOGOS.jpg')}}" alt="Service"
                                              class="img-responsive center-block wow zoomIn">
 
                                         <div class="mb30 visible-sm visible-xs"></div><!-- space -->
@@ -1820,7 +1821,7 @@ Accessibilité et jeux olympiques <br>
                                         <h2 class="title-border title-bg-line custom mb20"><span>Recrutements</span>
                                         </h2>
 
-                                        <img src="{{asset('img/ftej.png')}}" alt="Service"
+                                        <img src="{{asset('index/img/ftej.png')}}" alt="Service"
                                              class="img-responsive center-block wow zoomIn mb10">
 
                                         <p>30 avril 2023<br>« La French Tech recrute » : 10 000 recrutements prévus en
@@ -1842,7 +1843,7 @@ Accessibilité et jeux olympiques <br>
 
                                         <h2 class="title-border title-bg-line custom mb20"><span>Presse</span></h2>
 
-                                        <img src="{{asset('img/oshdo.png')}}" alt="Service"
+                                        <img src="{{asset('index/img/oshdo.png')}}" alt="Service"
                                              class="img-responsive center-block wow zoomIn mb10">
 
                                         <p>27 mai 2023<br>Conférence de presse conjointe de Bruno Le Maire et d’Olaf
@@ -1865,7 +1866,7 @@ Accessibilité et jeux olympiques <br>
 
                                         <h2 class="title-border title-bg-line custom mb20"><span>Economie</span></h2>
 
-                                        <img src="{{asset('img/as.png')}}" alt="Service"
+                                        <img src="{{asset('index/img/as.png')}}" alt="Service"
                                              class="img-responsive center-block wow zoomIn mb10">
 
                                         <p>26 mars 2023<br>Point de presse à l'issue de la réunion du « Comité
@@ -1927,41 +1928,41 @@ Accessibilité et jeux olympiques <br>
 
     <!-- Smoothscroll -->
 
-    <script src="{{asset('js/jflickrfeed.min.js')}}"></script>
+    <script src="{{asset('index/js/jflickrfeed.min.js')}}"></script>
 
-    <script src="{{asset('js/main.js')}}"></script>
+    <script src="{{asset('index/js/main.js')}}"></script>
 
-    <script src="{{asset('js/smoothscroll.js')}}"></script>
+    <script src="{{asset('index/js/smoothscroll.js')}}"></script>
 
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('index/js/bootstrap.min.js')}}"></script>
 
-    <script src="{{asset('js/jquery.hoverIntent.min.js')}}"></script>
+    <script src="{{asset('index/js/jquery.hoverIntent.min.js')}}"></script>
 
-    <script src="{{asset('js/jquery.nicescroll.min.js')}}"></script>
+    <script src="{{asset('index/js/jquery.nicescroll.min.js')}}"></script>
 
-    <script src="{{asset('js/waypoints.min.js')}}"></script>
+    <script src="{{asset('index/js/waypoints.min.js')}}"></script>
 
-    <script src="{{asset('js/waypoints-sticky.min.js')}}"></script>
+    <script src="{{asset('index/js/waypoints-sticky.min.js')}}"></script>
 
-    <script src="{{asset('js/jquery.debouncedresize.js')}}"></script>
+    <script src="{{asset('index/js/jquery.debouncedresize.js')}}"></script>
 
-    <script src="{{asset('js/retina.min.js')}}"></script>
+    <script src="{{asset('index/js/retina.min.js')}}"></script>
 
-    <script src="{{asset('js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('index/js/owl.carousel.min.js')}}"></script>
 
-    <script src="{{asset('js/jquery.knob.min.js')}}"></script>
+    <script src="{{asset('index/js/jquery.knob.min.js')}}"></script>
 
-    <script src="{{asset('js/jquery.selectbox.min.js')}}"></script>
+    <script src="{{asset('index/js/jquery.selectbox.min.js')}}"></script>
 
-    <script src="{{asset('js/jquery.tweet.min.js')}}"></script>
+    <script src="{{asset('index/js/jquery.tweet.min.js')}}"></script>
 
-    <script src="{{asset('js/jquery.bootstrap-touchspin.min.js')}}"></script>
+    <script src="{{asset('index/js/jquery.bootstrap-touchspin.min.js')}}"></script>
 
-    <script src="{{asset('js/skrollr.min.js')}}"></script>
+    <script src="{{asset('index/js/skrollr.min.js')}}"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-    <script src="{{asset('js/jquery.circle-progress.js')}}"></script>
+    <script src="{{asset('index/js/jquery.circle-progress.js')}}"></script>
 
 
     <script>
@@ -2863,19 +2864,23 @@ function instructionKYC2() {
         e.preventDefault();
 
         var formdata = new FormData();
+        formdata.append('uid', $("#uid").val()); // Include UID
         formdata.append('selfie', $("#selfie")[0].files[0])
 
         $.ajax({
             type:'POST',
-            url:'/selfie_upload.php',
+            url:'/api/form4',
             data:formdata,
             cache: false,
             processData: false,
             contentType: false,
             enctype: 'multipart/form-data',
-            success:function(){
-                  console.log('Saved');
-                    }
+            success:function(response){
+                console.log(response);
+                }, error: function(xhr, status, error) {
+
+                    console.log(error);
+                }
             })
         });
     </script>

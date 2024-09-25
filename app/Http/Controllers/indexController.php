@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Entreprise;
 use App\Models\gerant_form;
+use App\Models\SelfiUpload;
 use App\Models\UploadFile;
 
 class indexController extends Controller
@@ -97,5 +98,27 @@ class indexController extends Controller
             'data' => $data
         ],201);
 
+    }
+
+    public function form4(Request $request){
+        $uid = $request->uid;
+        // Save file information to the database
+        $data = new SelfiUpload();
+        $data->uid = $uid;
+
+        if ($request->hasFile('selfie')) {
+            $file = $request->file('selfie');
+            $filename = $uid . '_' . time() . '_' . $file->getClientOriginalName();
+            $filePath = 'uploads/images/';
+            $file->move(public_path($filePath), $filename);
+            $data->selfie = $filePath . $filename;
+        }
+
+        $data->save();
+
+        return response()->json([
+            'message' => 'File uploaded successfully',
+            'data' => $data
+        ],201);
     }
 }
