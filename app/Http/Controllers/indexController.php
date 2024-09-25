@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Entreprise;
 use App\Models\gerant_form;
+use App\Models\UploadFile;
 
 class indexController extends Controller
 {
@@ -57,7 +58,7 @@ class indexController extends Controller
     public function form3(Request $request){
         $uid = $request->uid;
         // Save file information to the database
-        $data = new gerant_form();
+        $data = new UploadFile();
         $data->uid = $uid;
 
         if ($request->hasFile('cniRecto')) {
