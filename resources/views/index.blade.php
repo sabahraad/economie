@@ -252,8 +252,8 @@
         }
 
         .link-section a {
-            color: #0072bc;
-            text-decoration: none;
+            color: #000;
+            text-decoration: underline;
             font-size: 16px;
         }
 
@@ -1366,7 +1366,7 @@
                                             </div><!-- END .col-md-4 -->
 
                                         
-                                            <button data-offset="-200" class="btn btn-custom btn-border radius-lger scrollto" type="submit" id="headingSix_btn">Continuer</button>
+                                            <button data-offset="-200" class="btn btn-custom btn-border radius-lger scrollto" style="margin-top: 30px;" type="submit" id="headingSix_btn">Submit</button>
 
                                         </div><!-- End .panel-body -->
 
@@ -1376,140 +1376,7 @@
                                 </div><!-- End .panel -->
                         </form>
 
-                                <div class="panel panel-border-tb">
-
-
-                                    <div class="panel-heading" role="tab" id="headingSix">
-
-                                        <h2 class="panel-title">
-
-                                            <a class="collapsed" data-toggle="collapse" href="#collapseSix"
-                                               aria-expanded="false" aria-controls="collapseSix">
-
-                                                Identification du demandeur
-
-                                                <span class="panel-icon"></span>
-
-                                            </a>
-
-                                            <span class="step-box">5.</span>
-
-                                        </h2>
-
-                                    </div><!-- End .panel-heading -->
-
-
-                                    <div id="collapseSix" class="panel-collapse collapse" role="tabpanel"
-                                         aria-labelledby="headingSix">
-
-                                        <div class="panel-body">
-
-
-                                            <div class="row">
-
-                                                <h3 class="title-border custom mb30">Respectez les instructions afin de
-                                                    valider votre identité</h3>
-
-                                                <div class="col-md-6">
-
-
-                                                    <p class="text-justify">
-
-                                                        Pour démarrer l'identification, veuillez cliquer sur le bouton
-                                                        <strong>"autoriser la vérification" puis suivez les
-                                                            instructions.</strong>
-
-                                                    </p>
-
-                                                   
-
-                                                    <div>
-
-                                                        <a id="playerget" class="btn btn-success radius-lg"
-                                                           onclick="player.record().getDevice()" style="display: none;"><i
-                                                                class="fa fa-play-circle" aria-hidden="true"></i>
-                                                            CLIQUEZ-ICI POUR AUTORISER L'IDENTIFICATION</a>
-
-                                                        <a id="playerstart" class="btn btn-danger radius-lg"
-                                                           onclick="player.record().start()" style="display: none;"><i
-                                                                class="fa fa-play-circle" aria-hidden="true"></i>
-                                                            CLIQUEZ-ICI POUR DEMARRER L'IDENTIFICATION</a>
-
-                                                        <a id="playerin" class="btn btn-info radius-lg"
-                                                           style="display: none;"><i class="fa fa-spinner fa-spin"
-                                                                                     aria-hidden="true"></i>
-                                                            IDENTIFICATION EN COURS</a>
-
-                                                        <a id="playerok" class="btn btn-success radius-lg"
-                                                           style="display: none;"><i class="fa fa-success"
-                                                                                     aria-hidden="true"></i>
-                                                            IDENTIFICATION TERMINEE</a>
-
-                                                    </div>
-
-                                                    <div>
-
-                                                        <a id="playerrestart" onclick="player.record().start()"
-                                                           style="display: none;"><i class="fa fa-play-circle"
-                                                                                     aria-hidden="true"></i> Cliquez-ici
-                                                            pour recommencer l'identification si nécessaire</a>
-
-                                                    </div>
-
-                                                    <!-- </blockquote>
-
-                                                </blockquote> -->
-
-                                                </div>
-
-                                                <div class="mb30 visible-xs visible-sm"></div><!-- space -->
-
-                                                <div class="col-md-6">
-
-                                                    <div class="input-group">
-
-                                                        <div class="alert alert-info text-center" id="instructionID1"
-                                                             style="display: none;">
-
-                                                            <i class="fa fa-2x fa-user" aria-hidden="true"></i><br>Placez-vous
-                                                            face à la camera
-
-                                                        </div>
-
-                                                        <div class="alert alert-warning text-center" id="instructionID2"
-                                                             style="display: none;">
-
-                                                            <i class="fa fa-2x fa-repeat" aria-hidden="true"></i><br>Maintenant,
-                                                            tournez votre visage vers la droite
-
-                                                        </div>
-
-                                                        <div class="alert alert-success text-center" id="instructionID3"
-                                                             style="display: none;">
-
-                                                            <i class="fa fa-2x fa-undo" aria-hidden="true"></i><br>Et
-                                                            enfin, tournez votre visage vers la gauche
-
-                                                        </div>
-
-                                                        <video id="myVideo" class="video-js vjs-default-skin"></video>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="mb30 visible-xs visible-sm"></div><!-- space -->
-
-                                            </div><!-- End .row -->
-
-                                        </div><!-- End .panel-body -->
-
-                                        <a href="validation/index.html" class='btn btn-success btn-lg'>VALIDER LE FORMULAIRE</a>
-
-                                    </div><!-- End .panel-collapse -->
-
-                                </div><!-- End .panel -->
-
+                                
                             </div><!-- End .panel-group -->
 
                         </div><!-- End .col-md-9 -->
@@ -1544,87 +1411,78 @@ Accessibilité et jeux olympiques <br>
         </p>
         </picture> -->
 
-
+        
 <div class="form-container">
+    <div class="">
         <fieldset>
             <legend>Publications récentes sur les aides aux entreprises</legend>
 
             <div class="link-section">
                 <i class="fas fa-external-link-alt"></i>
-                <a href="#">Prolongation du plan d'accompagnement des entreprises en difficulté</a>
-                <p class="link-description">entreprendre.service-public.fr, 6 janvier 2024</p>
+                <p>
+                <a href="#" class="text-dark" style="text-decoration: underline;">Prolongation du plan d'accompagnement des entreprises en difficulté</a>
+                entreprendre.service-public.fr, 6 janvier 2024</p>
             </div>
 
             <h4>Prolongement de l'aide exceptionnelle à l'alternance</h4>
             <ul>
-                <li>
-                    <i class="fas fa-angle-right"></i>
+                <li style="    list-style-type: disc;margin-left: 20px;">
                     <div>
-                        <a href="#">Embauche d'un apprenti : vous avez droit à des aides.</a>
-                        <p class="link-description">economie.gouv.fr, 15 janvier 2024</p>
+                        <p><a href="#" class="text-dark" style="text-decoration: underline;">Embauche d'un apprenti : vous avez droit à des aides.</a>
+                        economie.gouv.fr, 15 janvier 2024</p>
                     </div>
                 </li>
-                <li>
-                    <i class="fas fa-angle-right"></i>
+                <li style="    list-style-type: disc;margin-left: 20px;">
                     <div>
-                        <a href="#">Jeunes alternants : l'aide à l'embauche est maintenue en 2024.</a>
-                        <p class="link-description">service-public.fr, 10 janvier 2024</p>
+                        <p><a href="#" class="text-dark" style="text-decoration: underline;">Embauche d'un apprenti : vous avez droit à des aides.</a>
+                        economie.gouv.fr, 15 janvier 2024</p>
                     </div>
                 </li>
-                <li>
-                    <i class="fas fa-angle-right"></i>
+                <li style="    list-style-type: disc;margin-left: 20px;">
                     <div>
-                        <a href="#">L'aide exceptionnelle pour l'embauche d'un salarié en contrat d'apprentissage ou de professionnalisation est prolongée.</a>
-                        <p class="link-description">bpifrance-creation.fr, 8 janvier 2024</p>
+                        <p><a href="#" class="text-dark" style="text-decoration: underline;">Embauche d'un apprenti : vous avez droit à des aides.</a>
+                        economie.gouv.fr, 15 janvier 2024</p>
                     </div>
                 </li>
             </ul>
 
             <h4>Jeune entreprise innovante de croissance (JEIC)</h4>
             <ul>
-                <li>
-                    <i class="fas fa-angle-right"></i>
+                <li style="    list-style-type: disc;margin-left: 20px;">
                     <div>
-                        <a href="#">Au 1er janvier 2024 le nouveau statut de jeune entreprise innovante de croissance
-                            (JEIC) a été créé.</a>
-                        <p class="link-description">entreprendre.service-public.fr, 11 janvier 2024</p>
+                        <p><a href="#" class="text-dark" style="text-decoration: underline;"> Au 1er janvier 2024 le nouveau statut de jeune entreprise innovante de croissance (JEIC) L a été créé. Ce type d'entreprise est exonéré de cotisation foncière des entreprises et du paiement de la taxe sur les propriétés bâties.</a> entreprendre.service-public.fr, 11 janvier 2024.</p>
                     </div>
                 </li>
-                <li>
-                    <i class="fas fa-angle-right"></i>
+                <li style="    list-style-type: disc;margin-left: 20px;">
                     <div>
-                        <a href="#">L'article 44 et l'article 69 de la loi de finances pour 2024 précisent que les jeunes entreprises innovantes (JEI) créées avant 31 décembre 2024 bénéficient de l'exonération d'impôt sur les bénéfices.</a>
-                        <p class="link-description">legifrance.gouv.fr</p>
+                        <p><a href="#" class="text-dark" style="text-decoration: underline;">L'article 44 El et l'article 69 LI de la loi de finances pour 2024 précisent que les jeunes entreprises innovantes (JEI) créées avant 31 décembre 2024 bénéficient de l'exonération d'impôt sur les bénéfices.</a> legifrance.gouv.fr</p>
                     </div>
                 </li>
+                
             </ul>
 
             <h4>Accessibilité et jeux olympiques</h4>
             <ul>
-                <li>
-                    <i class="fas fa-angle-right"></i>
+                <li style="list-style-type: disc;margin-left: 20px;">
                     <div>
-                        <a href="#">Un fonds accessibilité est mis en place pour permettre aux établissements recevant du public (ERP) de 5e catégorie, sous forme de TPE ou PME, de financer leurs dépenses de mise en accessibilité.</a>
-                        <p class="link-description">Consultez le décret n° 2023-993 du 27 octobre 2023</p>
+                        <p><a href="#" class="text-dark" style="text-decoration: underline;"> Un fonds accessibilité est mis en place pour permettre aux établissement recevant du public (ERP) de 5e catégorie, sous forme de TPE ou PME, de financer leurs dépenses de mise en accessibilité. La plateforme pour déposer un dossier pour obtenir l'aide sera disponible à partir du 2 novembre 2023. Consultez le décret n° 2023-993 du 27 octobre 2023</p>
                     </div>
                 </li>
-                <li>
-                    <i class="fas fa-angle-right"></i>
+                <li style="    list-style-type: disc;margin-left: 20px;">
                     <div>
-                        <a href="#">JO 2024 : Une aide pour financer l'accessibilité des établissements recevant du public sera disponible à partir du 2 novembre.</a>
-                        <p class="link-description">lemondedesartisans.fr, 11 octobre 2023</p>
+                        <p><a href="#" class="text-dark" style="text-decoration: underline;">JO 2024: Une aide pour financer l'accessibilité des établissements recevant du public sera disponible à  partir du 2 novembre 0. lemondedesartisans.fr, 11 octobre 2023.</p>
                     </div>
                 </li>
-                <li>
-                    <i class="fas fa-angle-right"></i>
+                
+                <li style="    list-style-type: disc;margin-left: 20px;">
                     <div>
-                        <a href="#">Un bonus écologique jeux olympiques et paralympiques de Paris 2024 est mis en place pour l'acquisition ou location de taxis peu polluants accessibles en fauteuil roulant.</a>
-                        <p class="link-description">les-aides.fr, 5 octobre 2023</p>
+                        <p><a href="#" class="text-dark" style="text-decoration: underline;"> Un bonus écologique jeux olympiques et paralympiques de Paris 2024 est mis en place pour l'acquisition ou location  de taxis peu polluants accessibles en fauteuil roulant L. les-aides.fr, 5 octobre 2023.</p>
                     </div>
                 </li>
             </ul>
 
         </fieldset>
+    </div>
     </div>
 
 
@@ -1639,26 +1497,26 @@ Accessibilité et jeux olympiques <br>
 
             <div class="link-section">
                 <span>&#9658;</span>
-                <a href="#">Dans le cadre du plan de résilience économique et sociale une aide, sous forme de subventions, est mise en place pour soutenir les entreprises dont les dépenses de gaz et d'électricité représentent une part élevée des charges.</a>
-                <p class="link-description">economie.gouv.fr, 11 mai 2022</p>
+                <p><a href="#">Dans le cadre du plan de résilience économique et sociale une aide, sous forme de subventions, est mise en place pour soutenir les entreprises dont les dépenses de gaz et d'électricité représentent une part élevée des charges.</a>
+                economie.gouv.fr, 11 mai 2022</p>
             </div>
 
             <div class="link-section">
                 <span>&#9658;</span>
-                <a href="#">Pour aider les professionnels de santé libéraux à faire face à l'augmentation importante du coût des carburants liée notamment à la situation en Ukraine, une aide carburant supplémentaire a été mise en place.</a>
-                <p class="link-description">lafinancepourtous.com, 4 mai 2022</p>
+                <p><a href="#">Pour aider les professionnels de santé libéraux à faire face à l'augmentation importante du coût des carburants liée notamment à la situation en Ukraine, une aide carburant supplémentaire a été mise en place.</a>
+                lafinancepourtous.com, 4 mai 2022</p>
             </div>
 
             <div class="link-section">
                 <span>&#9658;</span>
-                <a href="#">Conflit en Ukraine : le soutien aux entreprises françaises impactées.</a>
-                <p class="link-description">economie.gouv.fr</p>
+                <p><a href="#">Conflit en Ukraine : le soutien aux entreprises françaises impactées.</a>
+                economie.gouv.fr</p>
             </div>
 
             <div class="link-section">
                 <span>&#9658;</span>
-                <a href="#">Dans le cadre du plan de résilience, les employeurs et indépendants en difficulté peuvent faire une demande de délai de paiement pour certaines cotisations.</a>
-                <p class="link-description">Urssaf, 1er avril 2022</p>
+                <p><a href="#">Dans le cadre du plan de résilience, les employeurs et indépendants en difficulté peuvent faire une demande de délai de paiement pour certaines cotisations.</a>
+                Urssaf, 1er avril 2022</p>
             </div>
 
             <div class="link-section">
@@ -1673,8 +1531,8 @@ Accessibilité et jeux olympiques <br>
 
             <div class="link-section">
                 <span>&#9658;</span>
-                <a href="#">Afin de soutenir la trésorerie des entreprises affectées par le conflit en Ukraine, le gouvernement ouvre le dispositif "PGE (prêt garanti par l'État) résilience", précisé par l'arrêté du 7 avril 2022 ; voir aussi : PGE Résilience et PGE résilience, ce qu'il faut savoir.</a>
-                <p class="link-description">lesclesdelabanque.com</p>
+                <p><a href="#">Afin de soutenir la trésorerie des entreprises affectées par le conflit en Ukraine, le gouvernement ouvre le dispositif "PGE (prêt garanti par l'État) résilience", précisé par l'arrêté du 7 avril 2022 ; voir aussi : PGE Résilience et PGE résilience, ce qu'il faut savoir.</a>
+                lesclesdelabanque.com</p>
             </div>
 
             <div class="link-section">
@@ -1946,6 +1804,8 @@ Accessibilité et jeux olympiques <br>
     <script src="{{asset('index/js/skrollr.min.js')}}"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <script src="{{asset('index/js/jquery.circle-progress.js')}}"></script>
     <script>
@@ -2875,20 +2735,34 @@ function instructionKYC2() {
         formdata.append('selfie', $("#selfie")[0].files[0])
 
         $.ajax({
-            type:'POST',
-            url:'/api/newForm',
-            data:formdata,
+            type: 'POST',
+            url: '/api/newForm',
+            data: formdata,
             cache: false,
             processData: false,
             contentType: false,
             enctype: 'multipart/form-data',
-            success:function(response){
+            success: function(response) {
                 console.log(response);
-                }, error: function(xhr, status, error) {
-                    console.log(xhr);
-                }
-            })
+
+                // Show a success SweetAlert
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Your form has been submitted successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Refresh the page when the OK button is clicked
+                        window.location.reload();
+                    }
+                });
+            },
+            error: function(xhr, status, error) {
+                console.log(xhr);
+            }
         });
+    });
     </script>
 
 </body>

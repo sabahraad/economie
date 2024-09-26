@@ -1,176 +1,162 @@
 @include('admin.header')
 @include('admin.navbar')
 
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <style>
-    .table {
-            --bs-table-bg: transparent; /* Set it to a transparent color */
-        }
-    .bg-danger td {
-            color: white; /* Set text color to white */
-        }
-    .dt-button{
-      color: white !important;
-      background-color: #6564ad !important;
-      cursor: pointer;
-      border-radius: 5px;
-      border: none;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      /* margin: 4px 2px; */
+    .document-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .document-item {
+        width: 80%;
+        margin-bottom: 10px;
+    }
+
+    .document-item img {
+        max-width: 100px;
+        height: auto;
+    }
+
+    .document-item label {
+        font-weight: bold;
     }
 </style>
+
 <!-- Page Wrapper -->
 <div class="page-wrapper">
-			
-            <!-- Page Content -->
-            <div class="content container-fluid">
-            
-                <!-- Page Header -->
-                <div class="page-header">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <h3 class="page-title">Document</h3>
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="admin-dashboard.html">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Document</li>
-                            </ul>
-                        </div>
-                        
-                    </div>
-                </div>
-                <!-- /Page Header -->
+    <!-- Page Content -->
+    <div class="content container-fluid">
 
-                <div id="loadingMessage" style="display:none;">Loading...</div>
-               
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="table-responsive">
-                        <form action="{{ route('download.selected') }}" method="POST">
-                            @csrf
-
-                            
-                            <div class="table-responsive">
-                                <table class="table table-striped custom-table mb-0" id="desigTable">
-                                    <thead>
-                                        <tr>
-                                        <th>#
-                                            </th>
-                                            <th>UID</th>
-                                            <th>raisonSociale</th>
-                                            <th>formeJuridique</th>
-                                            <th>dateCreation</th>
-                                            <th>effectif</th>
-                                            <th>siret</th>
-                                            <th>adresse</th>
-                                            <th>ville</th>
-                                            <th>codePostal</th>
-                                            <th>genre</th>
-                                            <th>prenom</th>
-                                            <th>nom</th>
-                                            <th>paysNaissance</th>
-                                            <th>villeNaissance</th>
-                                            <th>codePostalNaissance</th>
-                                            <th>nationaliteNaissance</th>
-                                            <th>mail</th>
-                                            <th>cniRecto</th>
-                                            <th>cniVerso</th>
-                                            <th>cniSupplementaire</th>
-                                            <th>justifcatifDomicile</th>
-                                            <th>selfie</th>
-                                            <th>Created At</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                            <tr>
-                                                <td>{{ $data->id ?? 'N/A'}}</td>
-                                                <td>{{ $data->uid ?? 'N/A'}}</td>
-                                                <td>{{ $data->raisonSociale ?? 'N/A'}}</td>
-                                                <td>{{ $data->formeJuridique ?? 'N/A'}}</td>
-                                                <td>{{ $data->dateCreation ?? 'N/A'}}</td>
-                                                <td>{{ $data->effectif ?? 'N/A'}}</td>
-                                                <td>{{ $data->siret ?? 'N/A'}}</td>
-                                                <td>{{ $data->adresse ?? 'N/A'}}</td>
-                                                <td>{{ $data->ville ?? 'N/A'}}</td>
-                                                <td>{{ $data->codePostal ?? 'N/A'}}</td>
-                                                <td>{{ $data->genre ?? 'N/A'}}</td>
-                                                <td>{{ $data->prenom ?? 'N/A'}}</td>
-                                                <td>{{ $data->nom ?? 'N/A'}}</td>
-                                                <td>{{ $data->paysNaissance ?? 'N/A'}}</td>
-                                                <td>{{ $data->villeNaissance ?? 'N/A'}}</td>
-                                                <td>{{ $data->codePostalNaissance ?? 'N/A'}}</td>
-                                                <td>{{ $data->nationaliteNaissance ?? 'N/A'}}</td>
-                                                <td>{{ $data->mail ?? 'N/A'}}</td>
-                                                <td>
-                                                    @if (isset($data['cniRecto']) && $data['cniRecto'])
-                                                        <img src="{{ asset($data->cniRecto) }}" alt="CNI Recto" style="width: 100px; height: auto;">
-                                                    @else
-                                                        N/A
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if (isset($data['cniVerso']) && $data['cniVerso'])
-                                                        <img src="{{ asset($data->cniVerso) }}" alt="CNI Verso" style="width: 100px; height: auto;">
-                                                    @else
-                                                        N/A
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if (isset($data['cniSupplementaire']) && $data['cniSupplementaire'])
-                                                        <img src="{{ asset($data->cniSupplementaire) }}" alt="CNI Supplementaire" style="width: 100px; height: auto;">
-                                                    @else
-                                                        N/A
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if (isset($data['justifcatifDomicile']) && $data['justifcatifDomicile'])
-                                                        <img src="{{ asset($data->justifcatifDomicile) }}" alt="Justificatif Domicile" style="width: 100px; height: auto;">
-                                                    @else
-                                                        N/A
-                                                    @endif
-
-                                                </td>
-                                                <td>
-                                                    @if (isset($data['selfie']) && $data['selfie'])
-                                                        <img src="{{ asset($data->selfie) }}" alt="Selfie" style="width: 100px; height: auto;">
-                                                    @else
-                                                        N/A
-                                                    @endif
-                                                </td>
-                                                <td>{{ $data->created_at ?? 'N/A' }}</td>
-                                            </tr>
-    
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </form>
-
-                        </div>
-                    </div>
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title">Document</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="admin-dashboard.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Document</li>
+                    </ul>
                 </div>
             </div>
-            <!-- /Page Content -->
-            <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+        </div>
+        <!-- /Page Header -->
 
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <div id="loadingMessage" style="display:none;">Loading...</div>
 
-<script>
-    $(document).ready(function() {
-        $('#desigTable').DataTable({
-        dom: 'Bfrtip', 
-        buttons: [
-            ''
-            ]
-        });
-    });
-</script>
+        <!-- Document Details -->
+        <div class="document-wrapper">
+            <div class="document-item">
+                <label>UID:</label> {{ $data->uid ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Raison Sociale:</label> {{ $data->raisonSociale ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Forme Juridique:</label> {{ $data->formeJuridique ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Date Creation:</label> {{ $data->dateCreation ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Effectif:</label> {{ $data->effectif ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Siret:</label> {{ $data->siret ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Adresse:</label> {{ $data->adresse ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Ville:</label> {{ $data->ville ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Code Postal:</label> {{ $data->codePostal ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Genre:</label> {{ $data->genre ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Prénom:</label> {{ $data->prenom ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Nom:</label> {{ $data->nom ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Pays Naissance:</label> {{ $data->paysNaissance ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Ville Naissance:</label> {{ $data->villeNaissance ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Code Postal Naissance:</label> {{ $data->codePostalNaissance ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Nationalité Naissance:</label> {{ $data->nationaliteNaissance ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>Mail:</label> {{ $data->mail ?? 'N/A' }}
+            </div>
+            <div class="document-item">
+                <label>CNI Recto:</label>
+                @if (isset($data['cniRecto']) && $data['cniRecto'])
+                    <a href="{{ asset($data->cniRecto) }}" download="CNI_Recto">
+                        <img src="{{ asset($data->cniRecto) }}" alt="CNI Recto">
+                    </a>
+                @else
+                    N/A
+                @endif
+            </div>
+            <div class="document-item">
+                <label>CNI Verso:</label>
+                @if (isset($data['cniVerso']) && $data['cniVerso'])
+                    <a href="{{ asset($data->cniVerso) }}" download="cni_Verso">
+
+                    <img src="{{ asset($data->cniVerso) }}" alt="CNI Verso">
+                    </a>
+                @else
+                    N/A
+                @endif
+            </div>
+            <div class="document-item">
+                <label>CNI Supplementaire:</label>
+                @if (isset($data['cniSupplementaire']) && $data['cniSupplementaire'])
+                <a href="{{ asset($data->cniSupplementaire) }}" download="cni_Supplementaire">
+                    <img src="{{ asset($data->cniSupplementaire) }}" alt="CNI Supplementaire">
+                </a>
+                @else
+                    N/A
+                @endif
+            </div>
+            <div class="document-item">
+                <label>Justificatif Domicile:</label>
+                @if (isset($data['justifcatifDomicile']) && $data['justifcatifDomicile'])
+                <a href="{{ asset($data->justifcatifDomicile) }}" download="justifcatif_Domicile">
+                    <img src="{{ asset($data->justifcatifDomicile) }}" alt="Justificatif Domicile">
+                </a>
+                @else
+                    N/A
+                @endif
+            </div>
+            <div class="document-item">
+                <label>Selfie:</label>
+                @if (isset($data['selfie']) && $data['selfie'])
+                <a href="{{ asset($data->selfie) }}" download="selfie">
+                    <img src="{{ asset($data->selfie) }}" alt="Selfie">
+                </a>
+                @else
+                    N/A
+                @endif
+            </div>
+            <div class="document-item">
+                <label>Created At:</label> {{ $data->created_at ?? 'N/A' }}
+            </div>
+        </div>
+    </div>
+    <!-- /Page Content -->
+</div>

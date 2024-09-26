@@ -60,10 +60,6 @@ class DataController extends Controller
                 'id' => $entreprise->id,
                 'uid' => $uid,
                 'email' => $entreprise->mail,
-                'entreprise_status' => $entrepriseStatus,
-                'gerant_status' => $gerantStatus,
-                'upload_status' => $uploadStatus,
-                'selfie_status' => $selfieStatus,
                 'created_at' => $entreprise->created_at,
                 'files_count' => $filesCount, // Add the files count field
                 'percentage' => $percentage, // Add the percentage field
@@ -76,6 +72,19 @@ class DataController extends Controller
     public function downloadSelected(Request $request)
     {
         $selectedUids = $request->input('uids');
+
+        if (empty($selectedUids)) {
+            return back()->with('error', 'No rows selected');
+        }
+
+        if($request->delete){
+           foreach($selectedUids as $id){
+               $data = Userdata::where('uid', $id)->first();
+               $data->delete();
+           }
+           return back()->with('success', 'Data Deleted Successfully');
+
+        }
 
         if (empty($selectedUids)) {
             return back()->with('error', 'No rows selected');
@@ -205,13 +214,6 @@ class DataController extends Controller
     {
         Auth::logout();
         return redirect()->route('login');
-    }
-
-    public function deleteData($id)
-    {
-        $data = Userdata::find($id);
-        $data->delete();
-        return response()->json(['success' => 'Data deleted successfully']);
     }
 
 }

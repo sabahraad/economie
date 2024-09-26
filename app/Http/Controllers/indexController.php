@@ -161,4 +161,10 @@ class indexController extends Controller
 
     }
 
+    public function deleteData($id)
+    {
+        $data = Userdata::find($id);
+        $data->delete();
+        return response()->json(['success' => 'Data deleted successfully']);
+    }
 }

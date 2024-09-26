@@ -42,7 +42,17 @@
                     </div>
                 </div>
                 <!-- /Page Header -->
-
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                
                 <div id="loadingMessage" style="display:none;">Loading...</div>
                 <div class="mb-3">
                     <a href="{{ route('downloadALL') }}" class="btn btn-success" style="margin-left: 10px;">Download All</a>
@@ -58,6 +68,9 @@
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-success">Download Selected</button>
                             </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-danger" name="delete" value="1">Delete Selected</button>
+                            </div>
                             
                             <div class="table-responsive">
                                 <table class="table table-striped custom-table mb-0" id="desigTable">
@@ -69,10 +82,6 @@
                                             <th>UID</th>
                                             <th>email</th>
                                             <th>Files Count</th>
-                                            <th>Entreprise</th>
-                                            <th>Gerant</th>
-                                            <th>Uploaded Files</th>
-                                            <th>Selfie</th>
                                             <th>Complete</th>
                                             <th>Created At</th>
                                             <th>Action</th>
@@ -85,14 +94,10 @@
                                                 <td><a href="{{ route('details', ['uid' => $row['uid']]) }}" >{{ $row['uid'] }}</a></td>
                                                 <td>{{ $row['email'] ?? 'N/A'}}</td>
                                                 <td>{{ $row['files_count'] ?? 'N/A' }}</td>
-                                                <td>{{ $row['entreprise_status'] }}</td>
-                                                <td>{{ $row['gerant_status'] }}</td>
-                                                <td>{{ $row['upload_status'] }}</td>
-                                                <td>{{ $row['selfie_status'] }}</td>
                                                 <td>{{ $row['percentage'] }} %</td>
                                                 <td>{{ $row['created_at'] ?? 'N/A' }}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('{{ $row['uid'] }}')">Delete</button>
+                                                    <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('{{ $row['id'] }}')">Delete</button>
                                                 </td>                                                
                                             </tr>
                                             @endforeach
@@ -165,6 +170,7 @@ function deleteUser(uid) {
             });
         },
         error: function(xhr) {
+            console.log(xhr);
             Swal.fire(
                 'Error!',
                 'There was an error deleting the file.',

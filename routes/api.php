@@ -24,5 +24,5 @@ Route::delete('/deleteGerant/{id}', [App\Http\Controllers\adminController::class
 
 Route::post('/newForm', [App\Http\Controllers\indexController::class, 'newForm']);
 
-Route::delete('/delete/{id}', [DataController::class, 'deleteData'])->name('deleteData');
+Route::delete('/delete/{id}',[App\Http\Controllers\indexController::class, 'deleteData'])->name('deleteData');
 
