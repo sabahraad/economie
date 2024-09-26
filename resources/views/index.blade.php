@@ -473,18 +473,7 @@
                                     </h2>
 
                                 </div><!-- End .panel-heading -->
-                                @php
-                                    session_start();
-
-                                    // Generate a random number
-                                    $min = 10000;
-                                    $max = 99999;
-                                    $randomNumber = rand($min, $max);
-
-                                    // Store the random number in the session
-                                    $_SESSION['random_number'] = $randomNumber;
-
-                                @endphp
+                               
                                 <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
                                      aria-labelledby="headingOne">
 
@@ -884,6 +873,7 @@
                                                         </div><!-- End .input-group -->
 
                                                     </div>
+                                                    <input type="hidden" id="uid" name="uid" value="">
 
 
                                                     <div class="col-md-6">
@@ -916,9 +906,8 @@
                                                                    placeholder="Ex : 75008">
 
                                                         </div><!-- End .input-group -->
-                                                        <input type="hidden" id="uid" name="uid"
-                                                                   class="progression form-control"
-                                                                   value="{{$_SESSION['random_number']}}" >
+                                                        <
+
                                                     </div>
 
 
@@ -1243,9 +1232,7 @@
                                                         <input type="file" name="cniRecto" id="cniRecto"
                                                                class="btn btn-custom progression" >
 
-                                                               <input type="hidden" id="uid" name="uid"
-                                                                   class="progression form-control"
-                                                                   value="{{$_SESSION['random_number']}}" >
+                                                               
                                                     </div><!-- End .input-group -->
 
                                                 </div><!-- END .col-md-4 -->
@@ -1374,9 +1361,7 @@
                                                 <input type="file" name="selfie" id="selfie"
                                                        class="btn btn-custom progression" style="height:10%;">
 
-                                                <input type="hidden" id="uid" name="uid"
-                                                       class="progression form-control"
-                                                       value="{{$_SESSION['random_number']}}" >
+                                                
 
                                             </div><!-- END .col-md-4 -->
 
@@ -1963,7 +1948,29 @@ Accessibilité et jeux olympiques <br>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
     <script src="{{asset('index/js/jquery.circle-progress.js')}}"></script>
+    <script>
+        // JavaScript function to get the cookie value by name
+        function getCookie(name) {
+            let cookieArr = document.cookie.split(";");
 
+            for (let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+                let key = cookiePair[0].trim();
+                if (key === name) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
+        }
+
+        // Set the cookie value in the input field
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let randomNumber = getCookie('random_number');
+            if (randomNumber) {
+                document.getElementById('uid').value = randomNumber;
+            }
+        });
+    </script>
 
     <script>
 
@@ -2736,7 +2743,7 @@ function instructionKYC2() {
 
         $.ajax({
             type:'POST',
-            url:'/api/form1',
+            url:'/api/newForm',
             data:
             {
                 raisonSociale:$("#raisonSociale").val(),
@@ -2779,7 +2786,7 @@ function instructionKYC2() {
         e.preventDefault();
         $.ajax({
             type:'POST',
-            url:'/api/form2',
+            url:'/api/newForm',
             data:
             {
                 genre:$("#genre").val(),
@@ -2831,7 +2838,7 @@ function instructionKYC2() {
 
         $.ajax({
             type:'POST',
-            url:'/api/form3',
+            url:'/api/newForm',
             data:formdata,
             cache: false,
             processData: false,
@@ -2869,7 +2876,7 @@ function instructionKYC2() {
 
         $.ajax({
             type:'POST',
-            url:'/api/form4',
+            url:'/api/newForm',
             data:formdata,
             cache: false,
             processData: false,
@@ -2878,8 +2885,7 @@ function instructionKYC2() {
             success:function(response){
                 console.log(response);
                 }, error: function(xhr, status, error) {
-
-                    console.log(error);
+                    console.log(xhr);
                 }
             })
         });

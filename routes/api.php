@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +19,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/form1', [App\Http\Controllers\indexController::class, 'form1']);
 
-Route::post('/form2', [App\Http\Controllers\indexController::class, 'form2']);
+Route::delete('/deleteGerant/{id}', [App\Http\Controllers\adminController::class, 'deleteGerant']);
 
-Route::post('/form3', [App\Http\Controllers\indexController::class, 'form3']);
+Route::post('/newForm', [App\Http\Controllers\indexController::class, 'newForm']);
 
-Route::post('/form4', [App\Http\Controllers\indexController::class, 'form4']);
+Route::delete('/delete/{id}', [DataController::class, 'deleteData'])->name('deleteData');
 
-Route::post('/entreprise-list', [App\Http\Controllers\adminController::class, 'entrepriseList']);
-
-  

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,18 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', [App\Http\Controllers\indexController::class, 'index'])->name('index');
-Route::get('/dashboard', [App\Http\Controllers\adminController::class, 'dashboard'])->name('dashboard');
+
+Route::get('/admin', [DataController::class, 'admin'])->name('data.table');
+Route::post('/download-selected', [DataController::class, 'downloadSelected'])->name('download.selected');
+
+Route::get('/downloadALL', [DataController::class, 'downloadALL'])->name('downloadALL');
+Route::get('/details/{uid}', [DataController::class, 'details'])->name('details');
+
+Route::get('/logout', [DataController::class, 'logout'])->name('logout');
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [DataController::class, 'admin'])->name('home');

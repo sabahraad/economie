@@ -5,12 +5,9 @@
 						<ul class="sidebar-vertical">
 							
 							<li class="menu-title"> 
-								<li><a href="{{route('dashboard')}}">Entreprise</a></li>
-								<li><a href="#">Office Location</a></li>
+								<li><a href="{{route('data.table')}}">ALL Data</a></li>
+								
 							</li>
-							
-							
-							
 					</div>
                 </div>
             </div>
