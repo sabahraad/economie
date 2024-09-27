@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  web:
+web:
     image: economie:latest
     build:
       target: web
@@ -9,26 +9,37 @@ services:
     env_file:
       - .env
     ports:
-      - "8000:80"
+      - "8001:80"
     volumes:
       - .:/var/www/html
     depends_on:
       - db
-  
+ 
+
+  # MySQL service
   db:
-    platform: "linux/amd64"
-    image: mysql:8.0.30
-    env_file:
-      - .env
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: economie
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: project_1
+#      MYSQL_USER: root
+#      MYSQL_PASSWORD: root
     ports:
-      - "3306:3306"
+      - "3308:3307" # Exposing MySQL port 3307 on localhost
     volumes:
-      - dbdata:/var/lib/mysql
+      - db_data:/var/lib/mysql
+
+  # phpMyAdmin service
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8082:80" # Exposing phpMyAdmin on localhost port 8081
+    depends_on:
+      - db
 
 volumes:
-  dbdata:
+  db_data: # Persistent storage for MySQL data
