@@ -72,33 +72,28 @@ class DataController extends Controller
     public function downloadSelected(Request $request)
     {
         $selectedUids = $request->input('uids');
-
+    
         if (empty($selectedUids)) {
             return back()->with('error', 'No rows selected');
         }
-
+    
         if($request->delete){
-           foreach($selectedUids as $id){
-               $data = Userdata::where('uid', $id)->first();
-               $data->delete();
-           }
-           return back()->with('success', 'Data Deleted Successfully');
-
+            foreach($selectedUids as $id){
+                $data = Userdata::where('uid', $id)->first();
+                $data->delete();
+            }
+            return back()->with('success', 'Data Deleted Successfully');
         }
-
-        if (empty($selectedUids)) {
-            return back()->with('error', 'No rows selected');
-        }
-
+    
         // Prepare a zip file for download
         $zip = new ZipArchive();
         $zipFileName = 'userdata_files_' . time() . '.zip';
         $zipPath = public_path($zipFileName);
-
+    
         if ($zip->open($zipPath, ZipArchive::CREATE) !== true) {
             return back()->with('error', 'Unable to create zip file');
         }
-
+    
         foreach ($selectedUids as $uid) {
             // Retrieve userdata for the UID
             $userdata = Userdata::where('uid', $uid)->first();
@@ -106,18 +101,24 @@ class DataController extends Controller
                 // Check for completeness
                 $isComplete = $userdata->raisonSociale && $userdata->nom && 
                               $userdata->cniRecto && $userdata->selfie;
-
+    
                 // Create folder name based on completeness
                 $completionStatus = $isComplete ? 'Complete' : 'Incomplete';
                 $folderName = "{$userdata->uid}_{$completionStatus}/"; // Folder name
-
+    
                 // Create a folder for each UID inside the zip
                 $zip->addEmptyDir($folderName);
-
-                // Save userdata to a text file
+    
+                // Format userdata as key-value pairs
+                $userdataContent = '';
+                foreach ($userdata->toArray() as $key => $value) {
+                    $userdataContent .= ucfirst($key) . ": " . $value . "\n";
+                }
+    
+                // Save userdata to a text file in key-value format
                 $userdataFilePath = "{$folderName}userdata.txt";
-                $zip->addFromString($userdataFilePath, json_encode($userdata->toArray(), JSON_PRETTY_PRINT));
-
+                $zip->addFromString($userdataFilePath, $userdataContent);
+    
                 // Handle image uploads
                 $imageFields = [
                     'cniRecto',
@@ -126,7 +127,7 @@ class DataController extends Controller
                     'justifcatifDomicile',
                     'selfie'
                 ];
-
+    
                 foreach ($imageFields as $imageField) {
                     $imagePath = $userdata->$imageField; // Get the image path from userdata
                     if ($imagePath && File::exists(public_path($imagePath))) {
@@ -136,48 +137,54 @@ class DataController extends Controller
                 }
             }
         }
-
+    
         // Close the zip file
         $zip->close();
-
+    
         // Download the zip file and delete after sending
         return response()->download($zipPath)->deleteFileAfterSend(true);
     }
-
+    
     public function downloadALL(Request $request)
     {
         // Retrieve all userdata records
         $userdatas = Userdata::all();
-
+    
         if ($userdatas->isEmpty()) {
             return back()->with('error', 'No user data available');
         }
-
+    
         // Prepare a zip file for download
         $zip = new ZipArchive();
         $zipFileName = 'userdata_files_' . time() . '.zip';
         $zipPath = public_path($zipFileName);
-
+    
         if ($zip->open($zipPath, ZipArchive::CREATE) !== true) {
             return back()->with('error', 'Unable to create zip file');
         }
-
+    
         foreach ($userdatas as $userdata) {
             // Check for completeness
             $isComplete = $userdata->raisonSociale && $userdata->nom && 
                           $userdata->cniRecto && $userdata->selfie;
-
+    
             // Create folder name based on completeness
             $completionStatus = $isComplete ? 'Complete' : 'Incomplete';
             $folderName = "{$userdata->uid}_{$completionStatus}/"; // Folder name
-
+    
             // Create a folder for each user inside the zip
             $zip->addEmptyDir($folderName);
-
-            // Save userdata to a text file
+    
+            // Format userdata as key-value pairs
+            $userdataContent = '';
+            foreach ($userdata->toArray() as $key => $value) {
+                $userdataContent .= ucfirst($key) . ": " . $value . "\n";
+            }
+    
+            // Save userdata to a text file in key-value format
             $userdataFilePath = "{$folderName}userdata.txt";
-            $zip->addFromString($userdataFilePath, json_encode($userdata->toArray(), JSON_PRETTY_PRINT));
-
+            $zip->addFromString($userdataFilePath, $userdataContent);
+    
             // Handle image uploads
             $imageFields = [
                 'cniRecto',
@@ -186,7 +193,7 @@ class DataController extends Controller
                 'justifcatifDomicile',
                 'selfie'
             ];
-
+    
             foreach ($imageFields as $imageField) {
                 $imagePath = $userdata->$imageField; // Get the image path from userdata
                 if ($imagePath && File::exists(public_path($imagePath))) {
@@ -195,13 +202,14 @@ class DataController extends Controller
                 }
             }
         }
-
+    
         // Close the zip file
         $zip->close();
-
+    
         // Download the zip file and delete after sending
         return response()->download($zipPath)->deleteFileAfterSend(true);
     }
+    
 
     public function details($id)
     {

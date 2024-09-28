@@ -20,7 +20,6 @@
     <meta name="AdsBot-Google" content="noindex"/>
 
 
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"> <![endif]-->
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -50,147 +49,7 @@
 
     <!-- Queryloader -->
 
-    <!-- <script src="js/queryloader2.min.js"></script> -->
 
-    <style>
-
-        /* These are just a test styles - you don't need them in your project */
-
-
-
-@media screen and (max-width: 1000px) {
-
-  .mobile {
-
-        display: none !important;
-
-      }
-
-}
-
-
-.circle {
-
-    margin: 6px 6px 20px;
-
-    display: inline-block;
-
-    position: relative;
-
-    text-align: center;
-
-    line-height: 1.2;
-
-}
-
-
-
-.circle canvas {
-
-    vertical-align: top;
-
-}
-
-
-
-.circle strong {
-
-    position: absolute;
-
-    top: 50px;
-
-    left: 0;
-
-    width: 100%;
-
-    text-align: center;
-
-    line-height: 40px;
-
-    font-size: 30px;
-
-}
-
-
-
-.circle strong i {
-
-    font-style: normal;
-
-    font-size: 0.6em;
-
-    font-weight: normal;
-
-}
-
-
-
-.circle span {
-
-    display: block;
-
-    color: #aaa;
-
-    margin-top: 12px;
-
-}
-
-
-
-
-
-
-
-.install a:hover {
-
-    background-color: #222;
-
-}
-
-
-
-.credits {
-
-    color: #aaa;
-
-    position: fixed;
-
-    left: 0;
-
-    bottom: 0;
-
-    width: 100%;
-
-}
-
-
-
-.credits img {
-
-    margin-left: 4px;
-
-    border-radius: 4px;
-
-    vertical-align: middle;
-
-}
-
-
-
-@media (max-height: 600px), (max-width: 480px) {
-
-    .credits {
-
-        position: inherit;
-
-    }
-
-}
-
-
-
-
-    </style>
 
     <link href="{{asset('css/video-js.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/videojs.record.css')}}" rel="stylesheet">
@@ -201,19 +60,6 @@
 
     <style>
 
-            /* change player background color */
-
-            #myVideo {
-
-                background-color: #505050!important;
-
-            }
-
-            #myVideo2 {
-
-                background-color: #505050!important;
-
-            }
             body {
             font-family: Arial, sans-serif;
             background-color: #f8f8f8;
@@ -275,7 +121,6 @@
 
 <body>
 
-<!--<div class="boss-loader-overlay"></div>--><!-- End .boss-loader-overlay -->
 
 <div id="wrapper">
 
@@ -333,7 +178,6 @@
 
         </div><!-- End .page-header -->
 
-        <!--            <img src="/static/img/header.png" alt="header" style="display: block;margin-left: auto;margin-right: auto; margin-bottom:40px;">-->
         <picture>
             <source srcset="{{asset('index/img/header.png')}}" media="(min-width: 1100px)">
             <source srcset="{{asset('index/img/small_header.png')}}" media="(max-width: 1000px)">
@@ -1164,11 +1008,6 @@
 
                                             <div class="mb30 visible-xs visible-sm"></div><!-- space -->
 
-
-                                            <!--<a href="#headingThree" data-offset="-200"
-                                               class="btn btn-custom btn-border radius-lger scrollto"
-                                               onclick="$('#collapseThree').addClass('in');">Continuer</a>-->
-
                                             <button data-offset="-200" class="btn btn-custom btn-border radius-lger scrollto" type="submit" id="headingThree_btn">Continuer</button>
 
                                         </div><!-- End .row -->
@@ -1392,24 +1231,6 @@
 
 
         </div><!-- End #content -->
-
-        <!-- <picture>
-           
-        <p style="margin-left: 100px;margin-right: 330px; margin-bottom:40px;text-align:justify;"> 
-            Publications récentes sur les  aides aux entreprises Prolongation du plan d'accompagnement des entreprises difficulté L. entreprendre.service-public.fr, 6 janvier 2024 Prolongement de l'aide exceptionnelle à l'alternance <br>
-• Embauche d'un apprenti : vous avez droit à des aides. economie.gouv.fr, 15 janvier 2024.<br> • Jeunes alternants : l'aide à l'embauche est maintenue en 2024 CC. service-public.fr, 10 janvier 2024.<br> • L'aide exceptionnelle pour l'embauche d'un salarié en contrat d'apprentissage ou de professionnalisation est prolongée L. bpifrance-creation.fr, 8 janvier 2024 
-Jeune entreprise innovante de croissance (JEIC)<br>
-• Au 1er janvier 2024 le nouveau statut de jeune entreprise innovante de croissance (JEIC) L a été créé. Ce type d'entreprise est exonéré de cotisation foncière des entreprises et du paiement de la taxe sur les propriétés bâties. entreprendre.service-public.fr, 11 janvier 2024. <br>• L'article 44 El et l'article 69 LI de la loi de finances pour 2024 précisent que les jeunes entreprises innovantes (JEI) créées avant 31 décembre 2024 bénéficient de l'exonération d'impôt sur les bénéfices. legifrance.gouv.fr.
-Accessibilité et jeux olympiques <br>
-• Un fonds accessibilité est mis en place pour permettre aux établissement recevant du public (ERP) de 5e catégorie, sous forme de TPE ou PME, de financer leurs dépenses de mise en accessibilité. La plateforme pour déposer un dossier pour obtenir l'aide sera disponible à partir du 2 novembre 2023. Consultez le décret n° 2023-993 du 27 octobre 2023 <br> • JO 2024: Une aide pour financer l'accessibilité des établissements recevant du public sera disponible à  partir du 2 novembre 0. lemondedesartisans.fr, 11 octobre 2023. <br> • Un bonus écologique jeux olympiques et paralympiques de Paris 2024 est mis en place pour l'acquisition ou location  de taxis peu polluants accessibles en fauteuil roulant L. les-aides.fr, 5 octobre 2023.</p>
-        </picture>
-
-        <picture>
-            
-            <p style="margin-left: 100px;margin-right: 330px; margin-bottom:40px;text-align:justify;">
-            — Aide aux entreprises : crise ukrainienne <br>• Les décrets n° 2022-802 et e 2022-803 du 12 mai 2022 créent une aide pour les entreprises de  oéchele conchyliculture  qui font face à une augmentation des prix des matières premières et notamment de l'énergie dans le contexte de l<br>•agression de la Russie contre l'Ukraine. Dans le cadre du plan de résilience économique et sociale une aide, sous forme de subventions, est mise en place pour soutenir les entreprises dont les dépenses de gaz et d'électricité représentent une part élevée des chantes. economie.gouv.fr, 11 mai 2022 Pour aider les professionnels de santé libéraux à faire face à l'augmentation importante du coût des carburants liée notamment à la situation en Ukraine, une aide carburant supplémentaire a été mise en place. lafinancepourtous.com, 4 mai 2022. Conflit en Ukraine le ut'en aut entrearises françaises impactées. economie.gouv.fr Dans le cadre du plan de résilience, les employeurs et indépendants en difficulté peuvent faire une demande de délai de paiement pour certaines cotisations. Urssaf, ter avril 2022. Le décret n° 2022-550 du 14 avril 2022 détaille les modalités de aide exceptionnelle à l'ac cclk,burants présentée sur le site les-aides In<br> • Le décret n° 2022-511 du 8 avril 2022 instaure une aide exceptionnelle pour certaines entreposes pour l'acquisition de <br>• carburant Afin de soutenir la trésorerie des entreprises affectées par le conflit en Ukraine, le gouvernement ouvre le dispositif .PGE (prêt garanti par l'État) résilience. précisé par l'arrêté du 7 avril 2022 voir aussi : le PGE Résilience (les-aides.fr) et PGE résilience ce qu'il faut savoir (lesclesdelabanque.com) <br>• Le ministère de l'Économie annonce, dans le communiqué de  presse du 29 mars 2022 des mesures de soutien aux entreprises du secteur du bâtiment et des travaux publics affectée par la guerre en Ukraine, mises en oeuvre par le décret n°  2022-485 du 5 avril 2022
-        </p>
-        </picture> -->
 
         
 <div class="form-container">
