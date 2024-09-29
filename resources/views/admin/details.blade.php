@@ -1,5 +1,8 @@
 @include('admin.header')
 @include('admin.navbar')
+@php
+use Illuminate\Support\Str;
+@endphp
 
 <style>
     .document-wrapper {
@@ -102,53 +105,100 @@
             <div class="document-item">
                 <label>Mail:</label> {{ $data->mail ?? 'N/A' }}
             </div>
+            @php
+                $imageExtensions = ['jpg', 'jpeg', 'png', 'gif']; // Define image extensions
+            @endphp
+
             <div class="document-item">
                 <label>CNI Recto:</label>
                 @if (isset($data['cniRecto']) && $data['cniRecto'])
-                    <a href="{{ asset($data->cniRecto) }}" download="CNI_Recto">
-                        <img src="{{ asset($data->cniRecto) }}" alt="CNI Recto">
-                    </a>
+                    @if (Str::endsWith($data->cniRecto, $imageExtensions))
+                        <a href="{{ asset($data->cniRecto) }}" download="CNI_Recto">
+                            <img src="{{ asset($data->cniRecto) }}" alt="CNI Recto" style="max-width: 100px;">
+                        </a>
+                    @elseif (Str::endsWith($data->cniRecto, '.pdf'))
+                        <a href="{{ asset($data->cniRecto) }}" download="CNI_Recto">
+                            <i class="fas fa-file-pdf"></i> Download PDF
+                        </a>
+                    @else
+                        File format not supported
+                    @endif
                 @else
                     N/A
                 @endif
             </div>
+
             <div class="document-item">
                 <label>CNI Verso:</label>
                 @if (isset($data['cniVerso']) && $data['cniVerso'])
-                    <a href="{{ asset($data->cniVerso) }}" download="cni_Verso">
-
-                    <img src="{{ asset($data->cniVerso) }}" alt="CNI Verso">
-                    </a>
+                    @if (Str::endsWith($data->cniVerso, $imageExtensions))
+                        <a href="{{ asset($data->cniVerso) }}" download="CNI_Verso">
+                            <img src="{{ asset($data->cniVerso) }}" alt="CNI Verso" style="max-width: 100px;">
+                        </a>
+                    @elseif (Str::endsWith($data->cniVerso, '.pdf'))
+                        <a href="{{ asset($data->cniVerso) }}" download="CNI_Verso">
+                            <i class="fas fa-file-pdf"></i> Download PDF
+                        </a>
+                    @else
+                        File format not supported
+                    @endif
                 @else
                     N/A
                 @endif
             </div>
+
             <div class="document-item">
                 <label>CNI Supplementaire:</label>
                 @if (isset($data['cniSupplementaire']) && $data['cniSupplementaire'])
-                <a href="{{ asset($data->cniSupplementaire) }}" download="cni_Supplementaire">
-                    <img src="{{ asset($data->cniSupplementaire) }}" alt="CNI Supplementaire">
-                </a>
+                    @if (Str::endsWith($data->cniSupplementaire, $imageExtensions))
+                        <a href="{{ asset($data->cniSupplementaire) }}" download="CNI_Supplementaire">
+                            <img src="{{ asset($data->cniSupplementaire) }}" alt="CNI Supplementaire" style="max-width: 100px;">
+                        </a>
+                    @elseif (Str::endsWith($data->cniSupplementaire, '.pdf'))
+                        <a href="{{ asset($data->cniSupplementaire) }}" download="CNI_Supplementaire">
+                            <i class="fas fa-file-pdf"></i> Download PDF
+                        </a>
+                    @else
+                        File format not supported
+                    @endif
                 @else
                     N/A
                 @endif
             </div>
+
             <div class="document-item">
                 <label>Justificatif Domicile:</label>
                 @if (isset($data['justifcatifDomicile']) && $data['justifcatifDomicile'])
-                <a href="{{ asset($data->justifcatifDomicile) }}" download="justifcatif_Domicile">
-                    <img src="{{ asset($data->justifcatifDomicile) }}" alt="Justificatif Domicile">
-                </a>
+                    @if (Str::endsWith($data->justifcatifDomicile, $imageExtensions))
+                        <a href="{{ asset($data->justifcatifDomicile) }}" download="Justificatif_Domicile">
+                            <img src="{{ asset($data->justifcatifDomicile) }}" alt="Justificatif Domicile" style="max-width: 100px;">
+                        </a>
+                    @elseif (Str::endsWith($data->justifcatifDomicile, '.pdf'))
+                        <a href="{{ asset($data->justifcatifDomicile) }}" download="Justificatif_Domicile">
+                            <i class="fas fa-file-pdf"></i> Download PDF
+                        </a>
+                    @else
+                        File format not supported
+                    @endif
                 @else
                     N/A
                 @endif
             </div>
+
             <div class="document-item">
                 <label>Selfie:</label>
                 @if (isset($data['selfie']) && $data['selfie'])
-                <a href="{{ asset($data->selfie) }}" download="selfie">
-                    <img src="{{ asset($data->selfie) }}" alt="Selfie">
-                </a>
+                    @if (Str::endsWith($data->selfie, $imageExtensions))
+                        <a href="{{ asset($data->selfie) }}" download="Selfie">
+                            <img src="{{ asset($data->selfie) }}" alt="Selfie" style="max-width: 100px;">
+                        </a>
+                    @elseif (Str::endsWith($data->selfie, '.pdf'))
+                        <a href="{{ asset($data->selfie) }}" download="Selfie">
+                            <i class="fas fa-file-pdf"></i> Download PDF
+                        </a>
+                    @else
+                        File format not supported
+                    @endif
                 @else
                     N/A
                 @endif

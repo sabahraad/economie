@@ -77,10 +77,12 @@ class DataController extends Controller
             return back()->with('error', 'No rows selected');
         }
     
-        if($request->delete){
-            foreach($selectedUids as $id){
+        if ($request->delete) {
+            foreach ($selectedUids as $id) {
                 $data = Userdata::where('uid', $id)->first();
-                $data->delete();
+                if ($data) {
+                    $data->delete();
+                }
             }
             return back()->with('success', 'Data Deleted Successfully');
         }
@@ -99,7 +101,7 @@ class DataController extends Controller
             $userdata = Userdata::where('uid', $uid)->first();
             if ($userdata) {
                 // Check for completeness
-                $isComplete = $userdata->raisonSociale && $userdata->nom && 
+                $isComplete = $userdata->raisonSociale && $userdata->nom &&
                               $userdata->cniRecto && $userdata->selfie;
     
                 // Create folder name based on completeness
@@ -119,8 +121,8 @@ class DataController extends Controller
                 $userdataFilePath = "{$folderName}userdata.txt";
                 $zip->addFromString($userdataFilePath, $userdataContent);
     
-                // Handle image uploads
-                $imageFields = [
+                // Handle image and PDF uploads
+                $fileFields = [
                     'cniRecto',
                     'cniVerso',
                     'cniSupplementaire',
@@ -128,11 +130,12 @@ class DataController extends Controller
                     'selfie'
                 ];
     
-                foreach ($imageFields as $imageField) {
-                    $imagePath = $userdata->$imageField; // Get the image path from userdata
-                    if ($imagePath && File::exists(public_path($imagePath))) {
-                        $fileName = "{$folderName}{$imageField}.jpg"; // Save in folder
-                        $zip->addFile(public_path($imagePath), $fileName);
+                foreach ($fileFields as $fileField) {
+                    $filePath = $userdata->$fileField; // Get the file path from userdata
+                    if ($filePath && File::exists(public_path($filePath))) {
+                        $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION); // Get file extension
+                        $fileName = "{$folderName}{$fileField}.{$fileExtension}"; // Save in folder
+                        $zip->addFile(public_path($filePath), $fileName);
                     }
                 }
             }
@@ -145,7 +148,7 @@ class DataController extends Controller
         return response()->download($zipPath)->deleteFileAfterSend(true);
     }
     
-    public function downloadALL(Request $request)
+    public function downloadAll(Request $request)
     {
         // Retrieve all userdata records
         $userdatas = Userdata::all();
@@ -165,7 +168,7 @@ class DataController extends Controller
     
         foreach ($userdatas as $userdata) {
             // Check for completeness
-            $isComplete = $userdata->raisonSociale && $userdata->nom && 
+            $isComplete = $userdata->raisonSociale && $userdata->nom &&
                           $userdata->cniRecto && $userdata->selfie;
     
             // Create folder name based on completeness
@@ -185,8 +188,8 @@ class DataController extends Controller
             $userdataFilePath = "{$folderName}userdata.txt";
             $zip->addFromString($userdataFilePath, $userdataContent);
     
-            // Handle image uploads
-            $imageFields = [
+            // Handle image and PDF uploads
+            $fileFields = [
                 'cniRecto',
                 'cniVerso',
                 'cniSupplementaire',
@@ -194,11 +197,12 @@ class DataController extends Controller
                 'selfie'
             ];
     
-            foreach ($imageFields as $imageField) {
-                $imagePath = $userdata->$imageField; // Get the image path from userdata
-                if ($imagePath && File::exists(public_path($imagePath))) {
-                    $fileName = "{$folderName}{$imageField}.jpg"; // Save in folder
-                    $zip->addFile(public_path($imagePath), $fileName);
+            foreach ($fileFields as $fileField) {
+                $filePath = $userdata->$fileField; // Get the file path from userdata
+                if ($filePath && File::exists(public_path($filePath))) {
+                    $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION); // Get file extension
+                    $fileName = "{$folderName}{$fileField}.{$fileExtension}"; // Save in folder
+                    $zip->addFile(public_path($filePath), $fileName);
                 }
             }
         }
@@ -209,6 +213,7 @@ class DataController extends Controller
         // Download the zip file and delete after sending
         return response()->download($zipPath)->deleteFileAfterSend(true);
     }
+    
     
 
     public function details($id)

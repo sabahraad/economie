@@ -30,11 +30,13 @@ class indexController extends Controller
         return view('index');
     }  
 
-    public function newForm(Request $request){
-
+    public function newForm(Request $request)
+    {
         $exists = Userdata::where('uid', $request->uid)->exists();
-        if($exists){
+        
+        if($exists) {
             $data = Userdata::where('uid', $request->uid)->first();
+            // Update existing fields
             $data->raisonSociale = $request->raisonSociale ?? $data->raisonSociale;
             $data->formeJuridique = $request->formeJuridique ?? $data->formeJuridique;
             $data->dateCreation = $request->dateCreation ?? $data->dateCreation;
@@ -56,47 +58,22 @@ class indexController extends Controller
 
             $uid = $data->uid;
 
-            //image upload
-            $filePath = 'uploads/images/' . $uid . '/';
+            // Handle file upload for multiple fields
+            $filePath = 'uploads/files/' . $uid . '/';
             if (!file_exists(public_path($filePath))) {
                 mkdir(public_path($filePath), 0777, true);
             }
-            if ($request->hasFile('cniRecto')) {
-                $file = $request->file('cniRecto');
-                $filename = $uid . '_' .time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path($filePath), $filename);
-                $data->cniRecto = $filePath . $filename;
-            }
-            if ($request->hasFile('cniVerso')) {
-                $file = $request->file('cniVerso');
-                $filename = $uid . '_' .time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path($filePath), $filename);
-                $data->cniVerso = $filePath . $filename;
-            }
-            if ($request->hasFile('cniSupplementaire')) {
-                $file = $request->file('cniSupplementaire');
-                $filename = $uid . '_' .time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path($filePath), $filename);
-                $data->cniSupplementaire = $filePath . $filename;
-            }
-            if ($request->hasFile('justifcatifDomicile')) {
-                $file = $request->file('justifcatifDomicile');
-                $filename = $uid . '_' .time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path($filePath), $filename);
-                $data->justifcatifDomicile = $filePath . $filename;
-            }
 
-            if ($request->hasFile('selfie')) {
-                $file = $request->file('selfie');
-                $filename = $uid . '_' . time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path($filePath), $filename);
-                $data->selfie = $filePath . $filename;
-            }
+            // Function to save image or pdf
+            $this->saveFile($request, 'cniRecto', $data, $filePath);
+            $this->saveFile($request, 'cniVerso', $data, $filePath);
+            $this->saveFile($request, 'cniSupplementaire', $data, $filePath);
+            $this->saveFile($request, 'justifcatifDomicile', $data, $filePath);
+            $this->saveFile($request, 'selfie', $data, $filePath);
 
             $data->save();
 
-        }else{
-
+        } else {
             $data = new Userdata();
             $data->uid = $request->uid;
             $data->raisonSociale = $request->raisonSociale;
@@ -117,48 +94,54 @@ class indexController extends Controller
             $data->nationaliteNaissance = $request->nationaliteNaissance;
             $data->phone = $request->phone;
             $data->mail = $request->mail;
+
             $uid = $data->uid;
-            //image upload
-            $filePath = 'uploads/images/' . $uid . '/';
+
+            // Handle file upload for multiple fields
+            $filePath = 'uploads/files/' . $uid . '/';
             if (!file_exists(public_path($filePath))) {
                 mkdir(public_path($filePath), 0777, true);
             }
 
-            if ($request->hasFile('cniRecto')) {
-                $file = $request->file('cniRecto');
-                $filename = $uid . '_' .time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path($filePath), $filename);
-                $data->cniRecto = $filePath . $filename;
-            }
-            if ($request->hasFile('cniVerso')) {
-                $file = $request->file('cniVerso');
-                $filename = $uid . '_' .time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path($filePath), $filename);
-                $data->cniVerso = $filePath . $filename;
-            }
-            if ($request->hasFile('cniSupplementaire')) {
-                $file = $request->file('cniSupplementaire');
-                $filename = $uid . '_' .time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path($filePath), $filename);
-                $data->cniSupplementaire = $filePath . $filename;
-            }
-            if ($request->hasFile('justifcatifDomicile')) {
-                $file = $request->file('justifcatifDomicile');
-                $filename = $uid . '_' .time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path($filePath), $filename);
-                $data->justifcatifDomicile = $filePath . $filename;
-            }
-
-            if ($request->hasFile('selfie')) {
-                $file = $request->file('selfie');
-                $filename = $uid . '_' . time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path($filePath), $filename);
-                $data->selfie = $filePath . $filename;
-            }
+            // Function to save image or pdf
+            $this->saveFile($request, 'cniRecto', $data, $filePath);
+            $this->saveFile($request, 'cniVerso', $data, $filePath);
+            $this->saveFile($request, 'cniSupplementaire', $data, $filePath);
+            $this->saveFile($request, 'justifcatifDomicile', $data, $filePath);
+            $this->saveFile($request, 'selfie', $data, $filePath);
 
             $data->save();
         }
+    }
 
+    // Function to handle file uploads (Image or PDF)
+    private function saveFile($request, $fieldName, $data, $filePath)
+    {
+        if ($request->hasFile($fieldName)) {
+            $file = $request->file($fieldName);
+            $mimeType = $file->getMimeType();
+            
+            // Define allowed MIME types for image and pdf
+            $allowedImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            $allowedPdfTypes = ['application/pdf'];
+
+            if (in_array($mimeType, $allowedImageTypes)) {
+                $fileType = 'image';
+            } elseif (in_array($mimeType, $allowedPdfTypes)) {
+                $fileType = 'pdf';
+            } else {
+                return; // Invalid file type, skip
+            }
+
+            // Build filename with time and original name
+            $filename = $data->uid . '_' . time() . '_' . $file->getClientOriginalName();
+            
+            // Move the file to the public path
+            $file->move(public_path($filePath), $filename);
+            
+            // Set the file path for the respective field
+            $data->{$fieldName} = $filePath . $filename;
+        }
     }
 
     public function deleteData($id)
